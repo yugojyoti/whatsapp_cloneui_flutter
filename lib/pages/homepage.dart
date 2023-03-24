@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/pages/call_page.dart';
+import 'package:whatsapp_clone/pages/status_page.dart';
+
+import 'chat_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -55,7 +59,49 @@ class _MyHomePageState extends State<MyHomePage>
           indicatorColor: Colors.white,
         ),
       ),
-      body: Text("WhatsApp"),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Text("Camera"),
+          ChatPage(),
+          StatusPage(),
+          CallPage(),
+        ],
+      ),
+      floatingActionButton: _getFAB(),
     );
+  }
+
+  _getFAB() {
+    if (_tabController.index == 1) {
+      return FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Color(0xff25d366),
+        child: Icon(
+          Icons.message,
+          color: Colors.white,
+        ),
+      );
+    } else if (_tabController.index == 2) {
+      return FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Color(0xff25d366),
+        child: Icon(
+          Icons.camera_alt,
+          color: Colors.white,
+        ),
+      );
+    } else if (_tabController.index == 3) {
+      return FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Color(0xff25d366),
+        child: Icon(
+          Icons.phone,
+          color: Colors.white,
+        ),
+      );
+    } else {
+      return null;
+    }
   }
 }
